@@ -3,679 +3,199 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portafolio | Tu Nombre</title>
+<title>Edson Armijo Ruiz · Dev</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0a0a0f;
-    --surface: #12121a;
-    --surface2: #1a1a26;
-    --border: rgba(255,255,255,0.08);
-    --accent: #7c6ef7;
-    --accent2: #4ecdc4;
-    --text: #f0eff8;
-    --muted: #8886a0;
-    --mono: 'DM Mono', monospace;
-    --display: 'Syne', sans-serif;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--display);
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ── GRID BACKGROUND ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(124,110,247,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(124,110,247,0.03) 1px, transparent 1px);
-    background-size: 48px 48px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.25rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 0.9rem;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    text-decoration: none;
-    color: var(--muted);
-    font-size: 0.85rem;
-    font-family: var(--mono);
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--text); }
-
-  /* ── SECTIONS ── */
-  section { position: relative; z-index: 1; }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 6rem 2rem 4rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .hero-tag {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .hero-tag::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  h1 {
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
-  }
-
-  h1 span {
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(124,110,247,0.5);
-  }
-
-  .hero-desc {
-    font-size: 1.1rem;
-    color: var(--muted);
-    max-width: 520px;
-    margin-bottom: 2.5rem;
-    line-height: 1.7;
-  }
-
-  .hero-ctas {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    padding: 0.75rem 1.75rem;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    text-decoration: none;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-
-  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
-
-  .btn-outline {
-    padding: 0.75rem 1.75rem;
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    text-decoration: none;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .btn-outline:hover { border-color: var(--accent); transform: translateY(-1px); }
-
-  .hero-scroll {
-    margin-top: 4rem;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .hero-scroll::after {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--muted), transparent);
-  }
-
-  /* ── ABOUT ── */
-  #sobre-mi {
-    padding: 6rem 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .section-label {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--accent);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.25rem;
-    line-height: 1.1;
-  }
-
-  .about-text {
-    color: var(--muted);
-    font-size: 0.95rem;
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-  }
-
-  .skill-tag {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--accent2);
-    background: rgba(78,205,196,0.06);
-    border: 1px solid rgba(78,205,196,0.15);
-    padding: 0.4rem 0.75rem;
-    border-radius: 3px;
-    letter-spacing: 0.03em;
-  }
-
-  .skill-tag::before { content: '▸ '; opacity: 0.6; }
-
-  /* ── PROJECTS ── */
-  #proyectos {
-    padding: 6rem 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .projects-header {
-    margin-bottom: 3rem;
-  }
-
-  .projects-grid {
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  .project-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.2s, transform 0.2s;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
-
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px;
-    height: 100%;
-    background: var(--accent);
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.3s;
-  }
-
-  .project-card:hover { border-color: rgba(124,110,247,0.3); transform: translateX(4px); }
-  .project-card:hover::before { transform: scaleY(1); }
-
-  .project-number {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--accent);
-    opacity: 0.5;
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.1em;
-  }
-
-  .project-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.01em;
-  }
-
-  .project-desc {
-    color: var(--muted);
-    font-size: 0.9rem;
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
-  }
-
-  .project-tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .project-tag {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--muted);
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    padding: 0.25rem 0.6rem;
-    border-radius: 3px;
-  }
-
-  .project-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1.25rem;
-  }
-
-  .project-link {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--accent);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-  }
-
-  .project-link:hover { border-color: var(--accent); }
-
-  /* ── EXPERIENCE ── */
-  #experiencia {
-    padding: 6rem 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .timeline {
-    margin-top: 3rem;
-    position: relative;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 8px;
-    bottom: 0;
-    width: 1px;
-    background: var(--border);
-  }
-
-  .timeline-item {
-    padding-left: 2rem;
-    margin-bottom: 3rem;
-    position: relative;
-  }
-
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -4px;
-    top: 8px;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--accent);
-    border: 2px solid var(--bg);
-  }
-
-  .timeline-date {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.08em;
-  }
-
-  .timeline-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-  }
-
-  .timeline-company {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-  }
-
-  .timeline-desc {
-    color: var(--muted);
-    font-size: 0.88rem;
-    line-height: 1.7;
-  }
-
-  /* ── CONTACT ── */
-  #contacto {
-    padding: 6rem 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .contact-inner {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 4rem 2rem;
-  }
-
-  .contact-inner h2 { margin-bottom: 1rem; }
-
-  .contact-desc {
-    color: var(--muted);
-    max-width: 460px;
-    margin: 0 auto 2.5rem;
-    font-size: 0.95rem;
-  }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-
-  .contact-link {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-
-  .contact-link:hover { color: var(--accent); }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--border);
-    padding: 1.5rem 2rem;
-    text-align: center;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 640px) {
-    #sobre-mi { grid-template-columns: 1fr; gap: 2rem; }
-    .nav-links { display: none; }
-    h1 { font-size: 3rem; }
-    h2 { font-size: 1.85rem; }
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-tag   { animation: fadeUp 0.6s ease both; }
-  h1          { animation: fadeUp 0.6s 0.1s ease both; }
-  .hero-desc  { animation: fadeUp 0.6s 0.2s ease both; }
-  .hero-ctas  { animation: fadeUp 0.6s 0.3s ease both; }
-  .hero-scroll{ animation: fadeUp 0.6s 0.45s ease both; }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
 
-<!-- NAV -->
+<canvas id="matrix-bg"></canvas>
+
 <nav>
-  <span class="nav-logo">TuNombre.dev</span>
+  <span class="nav-logo">edson.armijo</span>
   <ul class="nav-links">
-    <li><a href="#sobre-mi">sobre mí</a></li>
+    <li><a href="#sobre-mi">sobre_mi</a></li>
     <li><a href="#proyectos">proyectos</a></li>
     <li><a href="#experiencia">experiencia</a></li>
     <li><a href="#contacto">contacto</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
-  <div class="hero-tag">Ingeniero en Sistemas</div>
-  <h1>Tu<br><span>Nombre</span><br>Aquí.</h1>
+  <div class="terminal-window">
+    <div class="terminal-bar">
+      <div class="t-dot red"></div>
+      <div class="t-dot yellow"></div>
+      <div class="t-dot green-dot"></div>
+      <span class="terminal-title">bash — edson@portfolio:~</span>
+    </div>
+    <div class="terminal-body" id="terminal-text"></div>
+  </div>
+  <h1>Edson<br><span class="name-green">Armijo</span><br><span class="name-outline">Ruiz.</span></h1>
   <p class="hero-desc">
-    Desarrollo software que resuelve problemas reales. Apasionado por el backend, las arquitecturas limpias y aprender algo nuevo cada semana.
+    // Full Stack Developer · Ingeniero en Sistemas<br>
+    // Python · Flask · JavaScript · MySQL · Power BI
   </p>
   <div class="hero-ctas">
     <a href="#proyectos" class="btn-primary">Ver proyectos</a>
     <a href="#contacto" class="btn-outline">Contáctame</a>
   </div>
-  <div class="hero-scroll">scroll</div>
 </section>
 
-<!-- SOBRE MÍ -->
 <section id="sobre-mi">
-  <div>
-    <div class="section-label">// 01. sobre mí</div>
-    <h2>Hola, soy <br>[Tu nombre].</h2>
-    <p class="about-text">
-      Recién egresado de Ingeniería en Sistemas con enfoque en desarrollo de software y soluciones tecnológicas. Me interesa construir aplicaciones robustas y escalables.
-    </p>
-    <p class="about-text">
-      Cuando no estoy programando, contribuyo a proyectos open source, leo sobre arquitectura de sistemas y busco siempre el siguiente reto.
-    </p>
-    <div style="margin-top:1.5rem;">
-      <a href="tu-cv.pdf" class="btn-outline" style="font-size:0.8rem; padding:0.6rem 1.25rem;">
-        Descargar CV →
-      </a>
+  <div class="section-wrap">
+    <div>
+      <div class="section-label">// 01. sobre mí</div>
+      <h2>Hola,<br>soy Edson.</h2>
+      <p class="about-text">Ingeniero en Sistemas Computacionales egresado de la Universidad Autónoma de Coahuila, con experiencia en desarrollo Full Stack. Me especializo en Python para aplicaciones backend y manejo de datos.</p>
+      <p class="about-text">He trabajado en Styra Robotik desarrollando aplicaciones web internas con Flask, optimizando flujos de información y mejorando infraestructura IT. Inglés B2 y siempre buscando el siguiente reto.</p>
+      <div style="margin-top:1.75rem;">
+        <a href="ArmijoRuiz_-_CV.pdf" class="btn-outline" style="font-size:0.75rem;padding:0.55rem 1.25rem;">Descargar CV →</a>
+      </div>
     </div>
-  </div>
-  <div>
-    <div class="section-label">// stack técnico</div>
-    <div class="skills-grid">
-      <span class="skill-tag">Python</span>
-      <span class="skill-tag">JavaScript</span>
-      <span class="skill-tag">Java</span>
-      <span class="skill-tag">SQL / MySQL</span>
-      <span class="skill-tag">React</span>
-      <span class="skill-tag">Node.js</span>
-      <span class="skill-tag">Git / GitHub</span>
-      <span class="skill-tag">Docker</span>
-      <span class="skill-tag">REST APIs</span>
-      <span class="skill-tag">Linux</span>
+    <div>
+      <div class="section-label">// stack técnico</div>
+      <div class="skills-grid">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Flask</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">HTML / CSS</span>
+        <span class="skill-tag">MySQL / SQL</span>
+        <span class="skill-tag">Oracle</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Bootstrap</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">Figma</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PROYECTOS -->
 <section id="proyectos">
-  <div class="projects-header">
+  <div class="section-wrap">
     <div class="section-label">// 02. proyectos</div>
     <h2>Lo que he<br>construido.</h2>
-  </div>
-  <div class="projects-grid">
+    <div class="projects-grid">
 
-    <!-- Proyecto 1 -->
-    <div class="project-card">
-      <div class="project-number">01</div>
-      <div class="project-title">Nombre del Proyecto</div>
-      <p class="project-desc">
-        Descripción breve del proyecto: qué problema resuelve, qué tecnologías usaste y cuál fue el resultado o impacto. 2-3 oraciones máximo.
-      </p>
-      <div class="project-tags">
-        <span class="project-tag">Python</span>
-        <span class="project-tag">FastAPI</span>
-        <span class="project-tag">PostgreSQL</span>
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-number">01</div>
+          <div class="project-status">en desarrollo</div>
+        </div>
+        <div class="project-title">Próximo proyecto</div>
+        <p class="project-desc">// Aquí irá tu primer proyecto.<br>// Vuelve pronto para verlo en acción.</p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Flask</span>
+          <span class="project-tag">MySQL</span>
+        </div>
+        <div class="project-links"><a href="https://github.com/NoSenseQC" class="project-link">GitHub →</a></div>
       </div>
-      <div class="project-links">
-        <a href="https://github.com/tuusuario/repo" class="project-link">GitHub →</a>
-        <a href="#" class="project-link">Demo →</a>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-number">02</div>
+          <div class="project-status">en desarrollo</div>
+        </div>
+        <div class="project-title">En desarrollo</div>
+        <p class="project-desc">// Segundo proyecto en camino.<br>// Regresa pronto para ver las novedades.</p>
+        <div class="project-tags">
+          <span class="project-tag">JavaScript</span>
+          <span class="project-tag">Node.js</span>
+          <span class="project-tag">HTML / CSS</span>
+        </div>
+        <div class="project-links"><a href="https://github.com/NoSenseQC" class="project-link">GitHub →</a></div>
       </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-number">03</div>
+          <div class="project-status">en desarrollo</div>
+        </div>
+        <div class="project-title">En desarrollo</div>
+        <p class="project-desc">// Tercer proyecto en camino.<br>// Regresa pronto para ver las novedades.</p>
+        <div class="project-tags">
+          <span class="project-tag">Java</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">Bootstrap</span>
+        </div>
+        <div class="project-links"><a href="https://github.com/NoSenseQC" class="project-link">GitHub →</a></div>
+      </div>
+
     </div>
-
-    <!-- Proyecto 2 -->
-    <div class="project-card">
-      <div class="project-number">02</div>
-      <div class="project-title">Otro Proyecto</div>
-      <p class="project-desc">
-        Descripción del segundo proyecto. Destaca el problema, tu solución y tecnologías clave. Si fue trabajo académico también cuenta.
-      </p>
-      <div class="project-tags">
-        <span class="project-tag">React</span>
-        <span class="project-tag">Node.js</span>
-        <span class="project-tag">MongoDB</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/tuusuario/repo2" class="project-link">GitHub →</a>
-      </div>
-    </div>
-
-    <!-- Proyecto 3 -->
-    <div class="project-card">
-      <div class="project-number">03</div>
-      <div class="project-title">Tercer Proyecto</div>
-      <p class="project-desc">
-        Agrega aquí tu tercer proyecto destacado. Puede ser tu tesis, un proyecto escolar, una contribución open source o algo personal.
-      </p>
-      <div class="project-tags">
-        <span class="project-tag">Java</span>
-        <span class="project-tag">Spring Boot</span>
-        <span class="project-tag">Docker</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/tuusuario/repo3" class="project-link">GitHub →</a>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<!-- EXPERIENCIA -->
 <section id="experiencia">
-  <div class="section-label">// 03. experiencia</div>
-  <h2>Trayectoria.</h2>
+  <div class="section-wrap">
+    <div class="section-label">// 03. experiencia</div>
+    <h2>Trayectoria.</h2>
+    <div class="timeline">
 
-  <div class="timeline">
-
-    <div class="timeline-item">
-      <div class="timeline-date">2024 — Presente</div>
-      <div class="timeline-title">Tu puesto actual o más reciente</div>
-      <div class="timeline-company">Nombre de la empresa · Ciudad</div>
-      <div class="timeline-desc">
-        Describe brevemente tus responsabilidades y logros. Usa verbos de acción: desarrollé, implementé, reduje, mejoré. Incluye métricas si las tienes.
+      <div class="timeline-item">
+        <div class="timeline-date">Nov 2024<br>Jun 2025</div>
+        <div>
+          <div class="timeline-title">Software Engineer</div>
+          <div class="timeline-company">Styra Robotik · Saltillo, Coahuila</div>
+          <div class="timeline-desc">Implementé mejoras en infraestructura IT y desarrollé una aplicación web interna con Python (Flask) para gestión de procesos internos, optimizando el flujo de información de la empresa.</div>
+        </div>
       </div>
-    </div>
 
-    <div class="timeline-item">
-      <div class="timeline-date">2023</div>
-      <div class="timeline-title">Práctica profesional / Estadía</div>
-      <div class="timeline-company">Empresa · Ciudad</div>
-      <div class="timeline-desc">
-        Describe las actividades y tecnologías que usaste. Aunque sea una práctica corta, incluye los proyectos en que participaste.
+      <div class="timeline-item">
+        <div class="timeline-date">Feb 2024<br>Sep 2024</div>
+        <div>
+          <div class="timeline-title">Internship — Desarrollador Web</div>
+          <div class="timeline-company">Styra Robotik · Saltillo, Coahuila</div>
+          <div class="timeline-desc">Desarrollo y optimización del sitio web corporativo mejorando la experiencia de usuario. Soporte técnico y mantenimiento preventivo de equipo de cómputo.</div>
+        </div>
       </div>
-    </div>
 
-    <div class="timeline-item">
-      <div class="timeline-date">2020 — 2024</div>
-      <div class="timeline-title">Ingeniería en Sistemas Computacionales</div>
-      <div class="timeline-company">Tu universidad · Ciudad</div>
-      <div class="timeline-desc">
-        Proyecto de titulación: [tema]. Materias clave: Algoritmos, Bases de datos, Redes, Arquitectura de software.
+      <div class="timeline-item">
+        <div class="timeline-date">Mar 2022<br>Feb 2023</div>
+        <div>
+          <div class="timeline-title">Servicio Social</div>
+          <div class="timeline-company">Facultad de Sistemas · UAdeC</div>
+          <div class="timeline-desc">Coordinación de equipo y configuración de redes para conferencias con más de 200 asistentes. Logro: reduje el tiempo de configuración de equipos en un 30%.</div>
+        </div>
       </div>
-    </div>
 
+      <div class="timeline-item">
+        <div class="timeline-date">2020<br>2024</div>
+        <div>
+          <div class="timeline-title">Ingeniería en Sistemas Computacionales</div>
+          <div class="timeline-company">Universidad Autónoma de Coahuila · Saltillo</div>
+          <div class="timeline-desc">Diplomado en Manufactura Integral · Facultad de Sistemas. Inglés B2 (intermedio-alto).<br><br>🏅 Examen CENEVAL EGEL-ISOFT — Desempeño <span style="color:var(--green);font-family:var(--mono);font-size:0.82rem;">Satisfactorio</span></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<!-- CONTACTO -->
 <section id="contacto">
-  <div class="contact-inner">
-    <div class="section-label" style="text-align:center; display:block;">// 04. contacto</div>
-    <h2>¿Trabajamos<br>juntos?</h2>
-    <p class="contact-desc">
-      Estoy buscando oportunidades como desarrollador. Si tienes un proyecto interesante o una vacante, escríbeme.
-    </p>
-    <a href="mailto:tu@email.com" class="btn-primary">Enviar mensaje →</a>
-    <div class="contact-links">
-      <a href="https://github.com/tuusuario" class="contact-link">GitHub</a>
-      <a href="https://linkedin.com/in/tuusuario" class="contact-link">LinkedIn</a>
-      <a href="tu-cv.pdf" class="contact-link">CV PDF</a>
+  <div class="section-wrap">
+    <div class="contact-inner">
+      <div class="section-label" style="text-align:center;">// 04. contacto</div>
+      <h2>¿Trabajamos<br>juntos?</h2>
+      <p class="contact-desc">// Buscando oportunidades como desarrollador.<br>// Si tienes un proyecto o vacante, escríbeme.</p>
+      <a href="mailto:armijo.eds@gmail.com" class="btn-primary">Enviar mensaje →</a>
+      <div class="contact-links">
+        <a href="https://github.com/NoSenseQC" class="contact-link">GitHub</a>
+        <a href="https://linkedin.com/in/edson-armijoruiz-9aa097249" class="contact-link">LinkedIn</a>
+        <a href="ArmijoRuiz_-_CV.pdf" class="contact-link">CV PDF</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  Diseñado y desarrollado por Tu Nombre · 2024
+  <span>Edson Armijo Ruiz · 2025</span>
+  <span class="footer-status">disponible para trabajar</span>
 </footer>
 
+<script src="./js/script.js"></script>
 </body>
 </html>
